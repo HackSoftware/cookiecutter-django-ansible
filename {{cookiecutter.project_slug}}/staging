@@ -1,0 +1,9 @@
+
+[all:vars]
+env=staging
+
+[webservers]
+1.2.3.4
+
+[dbservers]
+3.4.5.6
