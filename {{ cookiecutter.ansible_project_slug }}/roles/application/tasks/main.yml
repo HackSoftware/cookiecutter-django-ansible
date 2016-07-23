@@ -4,7 +4,7 @@
   user: name={{ application_user }}
 
 - name: Make application dir structure
-  file: path={{ item }} state=directory owner={{ application_user }}
+  file: path={{ item }} state=directory owner={{ application_user }} group={{ application_user }}
   with_items:
     - "{{ application_root }}"
     - "{{ application_root }}releases"
@@ -22,7 +22,7 @@
        name=virtualenv
 
 - name: Set virtualenv owner to {{ application_user }}
-  file: path={{ application_root }}/shared/virtualenv state=directory owner={{ application_user }}
+  file: path={{ application_root }}/shared/virtualenv state=directory owner={{ application_user }} group={{ application_user }}
 
 - name: Create django env file
   template: src={{ application_vars_file }}
@@ -53,4 +53,10 @@
         dest=/etc/nginx/sites-enabled/{{ application_name }}
         state=link
   notify: reload nginx
+
+- name: Create application user file in sudoers.d
+  file: path='/etc/sudoers.d/{{ application_user }}' owner=root group=root mode=0440 state=touch
+
+- name: Give application user permission to restart the application
+  lineinfile: "dest='/etc/sudoers.d/{{ application_user }}' line='{{ application_user }} ALL = (root) NOPASSWD: /sbin/start {{ application_name }}, /sbin/stop {{ application_name }}, /sbin/restart {{ application_name }}'"
 {% endraw %}
