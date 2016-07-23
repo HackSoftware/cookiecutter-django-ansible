@@ -14,7 +14,6 @@ def context():
         "application_slug": "store",
         "application_user": "hack",
         "application_root": "/hack/store",
-        "postgres_password": "123"
     }
 
 
@@ -27,7 +26,7 @@ def build_files_list(root_dir):
     ]
 
 
-def check_paths(paths):
+def check_substitutions(paths):
     """Method to check all paths have correct substitutions,
     used by other tests cases
     """
@@ -54,4 +53,26 @@ def test_default_configuration(cookies, context):
 
     paths = build_files_list(str(result.project))
     assert paths
-    check_paths(paths)
+    check_substitutions(paths)
+
+
+def check_password_replaced(paths):
+    PATTERN = 'POSTGRES_PASSWORD!!!'
+    RE_OBJ = re.compile(PATTERN)
+
+    for path in paths:
+        if not is_binary(path):
+            for line in open(path, 'r'):
+                match = RE_OBJ.search(line)
+                msg = 'password variable not replaced in {}'
+                assert match is None, msg.format(path)
+
+
+def test_postgres_password_hook(cookies, context):
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+
+    paths = build_files_list(str(result.project))
+    assert paths
+    check_password_replaced(paths)
