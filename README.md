@@ -5,7 +5,7 @@ TODO: description
 
 Requirements
 ------------
-Install `cookiecutter` command line: `pip install cookiecutter`    
+Install `cookiecutter` command line: `pip install cookiecutter`
 
 Usage
 -----

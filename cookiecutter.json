@@ -1,11 +1,9 @@
 {
-    "full_name": "Your name",
-    "email": "Your address email (eq. you@example.com)",
-    "github_username": "Your github username",
-    "project_name": "Name of the project",
-    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
-    "project_short_description": "A short description of the project",
-    "release_date": "{% now 'local' %}",
-    "version": "0.1.0",
-    "_extensions": ["jinja2_time.TimeExtension"]
+    "ansible_project_name": "Name of the ansible project",
+    "ansible_project_slug": "{{ cookiecutter.ansible_project_name.lower().replace(' ', '_') }}",
+    "application_name": "Name of the project",
+    "application_slug": "{{ cookiecutter.application_name.lower().replace(' ', '_') }}",
+    "application_user": "hack",
+    "application_root": "/hack/{{ cookiecutter.application_slug }}",
+    "postgres_password": "Random String"
 }

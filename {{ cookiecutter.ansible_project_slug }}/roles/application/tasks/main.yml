@@ -1,0 +1,56 @@
+{% raw %}
+---
+- name: Add application user
+  user: name={{ application_user }}
+
+- name: Make application dir structure
+  file: path={{ item }} state=directory owner={{ application_user }}
+  with_items:
+    - "{{ application_root }}"
+    - "{{ application_root }}releases"
+    - "{{ application_root }}shared"
+    - "{{ application_root }}shared/log"
+    - "{{ application_root }}shared/media"
+    - "{{ application_root }}shared/staticfiles"
+
+- name: Set ssh keys to application user
+  authorized_key: user={{ application_user }} key="{{ lookup('file', 'files/app_user_keys') }}" state=present exclusive=yes
+
+- name: Create application virtualenv
+  pip: virtualenv="{{ application_root }}/shared/virtualenv" 
+       virtualenv_python=python3.4
+       name=virtualenv
+
+- name: Set virtualenv owner to {{ application_user }}
+  file: path={{ application_root }}/shared/virtualenv state=directory owner={{ application_user }}
+
+- name: Create django env file
+  template: src={{ application_vars_file }}
+            dest=/etc/environment
+
+- name: Install os dependencies for application
+  apt: name={{ item }} state=installed
+  with_items:
+    - libpq-dev
+    - libtiff4-dev
+    - libjpeg8-dev
+    - libfreetype6-dev
+    - liblcms1-dev
+    - libwebp-dev
+  tags: packages
+
+- name: Setup the upstart for application
+  template: src=templates/upstart.j2 dest=/etc/init/{{ application_name }}.conf
+
+- name: Create the Nginx configuration file
+  template: src=templates/nginx_config.j2
+            dest=/etc/nginx/sites-available/{{ application_name }}
+            backup=yes
+  notify: reload nginx
+
+- name: Ensure that the application site is enabled
+  file: src=/etc/nginx/sites-available/{{ application_name }}
+        dest=/etc/nginx/sites-enabled/{{ application_name }}
+        state=link
+  notify: reload nginx
+{% endraw %}

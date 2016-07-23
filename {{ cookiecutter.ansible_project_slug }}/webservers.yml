@@ -1,3 +1,4 @@
+{% raw %}
 ---
 - name: Provision web server
   hosts: webservers
@@ -10,3 +11,7 @@
     - ansible_vars/{{ env }}.yml
 
   roles:
+    - nginx
+    - base
+    - application
+{% endraw %}

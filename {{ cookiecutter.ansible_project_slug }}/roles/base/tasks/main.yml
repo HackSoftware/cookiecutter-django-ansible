@@ -1,0 +1,21 @@
+{% raw %}
+- name: Install base packages
+  apt: name={{ item }} state=installed
+  with_items:
+    - build-essential
+    - htop
+    - git
+    - libpq-dev
+    - python-virtualenv
+    - python3-dev
+    - python3-pip
+  tags: packages
+
+- pip: name=setuptools
+
+- name: Set the motd
+  copy: src=files/motd.txt dest=/etc/motd
+
+- name: Set ssh keys to root user
+  authorized_key: user=root key={{ lookup('file', 'files/root_user_keys') }} state=present exclusive=yes
+{% endraw %}

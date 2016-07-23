@@ -1,0 +1,17 @@
+{% raw %}
+# PostgreSQL
+POSTGRES_PASSWORD={{ postgresql_app_user_password }}
+POSTGRES_USER={{ application_name }}
+
+# General settings
+DJANGO_ADMIN_URL=
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_SECRET_KEY=jvlza+6=g+&!2fq_wagy873=&nrsc2@d2v3q7q%kh@)zjldyq8
+DJANGO_ALLOWED_HOSTS=.{{ server_domain }}
+
+# Security! Better to use DNS for this task, but you can use redirect
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# django-allauth
+DJANGO_ACCOUNT_ALLOW_REGISTRATION=True
+{% endraw %}

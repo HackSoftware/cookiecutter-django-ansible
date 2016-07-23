@@ -1,0 +1,3 @@
+server_domain: thecollective-bot.hacksoft.io
+gunicorn_workers: 3
+application_vars_file: application_vars/production_env.j2
