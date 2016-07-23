@@ -1,5 +1,6 @@
 cookiecutter-django-ansible
 ===========================
+[![Build Status](https://travis-ci.org/HackSoftware/cookiecutter-django-ansible.svg?branch=travisCI)](https://travis-ci.org/HackSoftware/cookiecutter-django-ansible)
 
 TODO: description
 
