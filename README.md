@@ -1,8 +1,21 @@
-cookiecutter-django-ansible
+Cookiecutter Django Ansible
 ===========================
 [![Build Status](https://travis-ci.org/HackSoftware/cookiecutter-django-ansible.svg?branch=travisCI)](https://travis-ci.org/HackSoftware/cookiecutter-django-ansible)
 
-TODO: description
+Powered by [Cookiecutter](https://github.com/audreyr/cookiecutter), Cookiecutter Django Ansible is a framework for jumpstarting an ansible project for provisioning a server that is ready for your [cookiecutter-django](https://github.com/pydanny/cookiecutter-django) application.
+
+Features
+--------
+- Works with latest cookiecutter-django
+- Fully automates the provisioning project
+    - Sets up a postgres server
+    - Sets up a NGINX server
+    - Sets up a upstart job
+    - Sets up env files
+    - Sets up aiblity to separate db server from application server. For easier scaling.
+    - Sets up staging and production server. For easier development cycle.
+- Works for
+    - Ubuntu 14.04
 
 Requirements
 ------------
