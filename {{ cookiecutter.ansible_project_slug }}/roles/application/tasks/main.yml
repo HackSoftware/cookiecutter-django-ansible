@@ -14,7 +14,7 @@
     - "{{ application_root }}shared/staticfiles"
 
 - name: Set ssh keys to application user
-  authorized_key: user={{ application_user }} key="{{ lookup('file', 'files/app_user_keys') }}" state=present exclusive=yes
+  authorized_key: user={{ application_user }} key="{{ lookup('file', 'ansible_vars/public_keys/app_user_keys') }}" state=present exclusive=yes
 
 - name: Create application virtualenv
   pip: virtualenv="{{ application_root }}/shared/virtualenv" 
