@@ -4,6 +4,6 @@
     "application_name": "Name of the project",
     "application_slug": "{{ cookiecutter.application_name.lower().replace(' ', '_') }}",
     "application_user": "hack",
-    "application_root": "/hack/{{ cookiecutter.application_slug }}",
+    "application_root": "/{{ cookiecutter.application_user }}/{{ cookiecutter.application_slug }}",
     "postgres_password": "Random String"
 }
