@@ -9,7 +9,7 @@ Install `cookiecutter` command line: `pip install cookiecutter`
 
 Usage
 -----
-Generate a new Cookiecutter template layout: `cookiecutter gh:Ivaylo-Bachvarov/cookiecutter-django-ansible`    
+Generate a new Cookiecutter template layout: `cookiecutter gh:HackSoftware/cookiecutter-django-ansible`
 
 License
 -------
