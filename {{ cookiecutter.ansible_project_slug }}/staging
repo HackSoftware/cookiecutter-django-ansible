@@ -2,7 +2,7 @@
 env=staging
 
 [webservers]
-1.2.3.4
+{{ cookiecutter.staging_server_domain }}
 
 [dbservers]
-3.4.5.6
+{{ cookiecutter.staging_server_domain }}
