@@ -1,3 +1,3 @@
-server_domain: thecollective-bot.hacksoft.io
+server_domain: {{ cookiecutter.staging_server_domain }}
 gunicorn_workers: 3
 application_vars_file: application_vars/staging_env.j2
