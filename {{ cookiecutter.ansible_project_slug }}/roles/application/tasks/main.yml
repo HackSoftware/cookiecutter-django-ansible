@@ -7,11 +7,11 @@
   file: path={{ item }} state=directory owner={{ application_user }} group={{ application_user }}
   with_items:
     - "{{ application_root }}"
-    - "{{ application_root }}releases"
-    - "{{ application_root }}shared"
-    - "{{ application_root }}shared/log"
-    - "{{ application_root }}shared/media"
-    - "{{ application_root }}shared/staticfiles"
+    - "{{ application_root }}/releases"
+    - "{{ application_root }}/shared"
+    - "{{ application_root }}/shared/log"
+    - "{{ application_root }}/shared/media"
+    - "{{ application_root }}/shared/staticfiles"
 
 - name: Set ssh keys to application user
   authorized_key: user={{ application_user }} key="{{ lookup('file', 'ansible_vars/public_keys/app_user_keys') }}" state=present exclusive=yes
