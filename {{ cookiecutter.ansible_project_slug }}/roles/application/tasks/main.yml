@@ -22,7 +22,7 @@
        name=virtualenv
 
 - name: Set virtualenv owner to {{ application_user }}
-  file: path={{ application_root }}/shared/virtualenv state=directory owner={{ application_user }} group={{ application_user }}
+  file: path={{ application_root }}/shared/virtualenv state=directory owner={{ application_user }} group={{ application_user }} recurse=yes
 
 - name: Create django env file
   template: src={{ application_vars_file }}
