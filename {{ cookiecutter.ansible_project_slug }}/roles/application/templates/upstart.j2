@@ -12,7 +12,7 @@ respawn limit 3 30
 
 script
     export LC_ALL=en_US.UTF8
-    eval $(cat /etc/environment | sed 's/^/export /')
+    . /etc/environment
 
     PORT=8000
     TIMEOUT=120
