@@ -48,7 +48,7 @@ vagrant up
 Provision the staging server
 
 ```
-ansible-playbook -i staging site.yml
+ansible-playbook -i staging sites.yml
 ```
 
 Provision the production server
