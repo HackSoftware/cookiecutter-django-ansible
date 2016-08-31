@@ -1,4 +1,5 @@
 import random
+from os.path import expanduser
 
 
 def get_random_string(
@@ -22,5 +23,22 @@ def postgres_set_password():
         settings_content = settings_content.replace('POSTGRES_PASSWORD!!!', postgres_password, 1)
 
         f.write(settings_content)
+
+
+def set_personal_public_key():
+    app_user_keys = 'ansible_vars/public_keys/app_user_keys'
+    root_user_keys = 'ansible_vars/public_keys/root_user_keys'
+
+    with open(expanduser('~/.ssh/id_rsa.pub'), 'r') as f:
+        publick_key = f.read()
+
+    with open(app_user_keys, 'w') as f:
+        f.write(publick_key)
+
+    with open(root_user_keys, 'w') as f:
+        f.write(publick_key)
+
+if '{{ cookiecutter.add_your_pulic_key }}'.lower() == 'y':
+    set_personal_public_key()
 
 postgres_set_password()

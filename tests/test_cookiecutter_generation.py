@@ -76,3 +76,22 @@ def test_postgres_password_hook(cookies, context):
     paths = build_files_list(str(result.project))
     assert paths
     check_password_replaced(paths)
+
+
+def test_public_key_placement(cookies, context):
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+    # Check if files are not empty
+    assert os.path.getsize(str(result.project) + '/ansible_vars/public_keys/app_user_keys') > 0
+    assert os.path.getsize(str(result.project) + '/ansible_vars/public_keys/root_user_keys') > 0
+
+
+def test_public_key_placement_disabled(cookies, context):
+    context['add_your_pulic_key'] = 'n'
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+    # Check if files are empty
+    assert os.path.getsize(str(result.project) + '/ansible_vars/public_keys/app_user_keys') == 0
+    assert os.path.getsize(str(result.project) + '/ansible_vars/public_keys/root_user_keys') == 0
