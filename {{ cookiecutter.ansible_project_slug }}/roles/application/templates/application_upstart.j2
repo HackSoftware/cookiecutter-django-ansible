@@ -1,8 +1,8 @@
 {% raw %}
 description "Application Server"
 
-start on started postgres
-stop on stopping postgres
+start on runlevel [2345]
+stop on runlevel [016]
 
 setuid {{ application_user }}
 setgid {{ application_user }}
