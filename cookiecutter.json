@@ -6,5 +6,6 @@
     "application_user": "hack",
     "application_root": "/{{ cookiecutter.application_user }}/{{ cookiecutter.application_slug }}/",
     "staging_server_domain": "staging.example.com",
-    "production_server_domain": "example.com"
+    "production_server_domain": "example.com",
+    "add_your_pulic_key": "y"
 }
