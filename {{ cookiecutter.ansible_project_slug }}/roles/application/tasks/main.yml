@@ -40,7 +40,7 @@
   tags: packages
 
 - name: Setup the upstart for application
-  template: src=templates/upstart.j2 dest=/etc/init/{{ application_name }}.conf
+  template: src=templates/aplication_upstart.j2 dest=/etc/init/{{ application_name }}.conf
 
 - name: Create the Nginx configuration file
   template: src=templates/nginx_config.j2
