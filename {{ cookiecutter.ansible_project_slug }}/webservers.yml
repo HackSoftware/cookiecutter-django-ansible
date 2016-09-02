@@ -15,3 +15,7 @@
     - base
     - application
 {% endraw %}
+
+{% if cookiecutter.add_celery_support == "y" %}
+    - celery
+{% endif %}

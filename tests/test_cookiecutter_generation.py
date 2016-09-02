@@ -95,3 +95,19 @@ def test_public_key_placement_disabled(cookies, context):
     # Check if files are empty
     assert os.path.getsize(str(result.project) + '/ansible_vars/public_keys/app_user_keys') == 0
     assert os.path.getsize(str(result.project) + '/ansible_vars/public_keys/root_user_keys') == 0
+
+
+def test_added_celery_role(cookies, context):
+    context['add_celery_support'] = 'y'
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+    assert os.path.isdir(str(result.project) + '/roles/celery')
+
+
+def test_removed_celery_role(cookies, context):
+    context['add_celery_support'] = 'n'
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+    assert not os.path.isdir(str(result.project) + '/roles/celery')

@@ -1,5 +1,9 @@
 import random
-from os.path import expanduser
+import shutil
+import os
+
+
+PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 
 def get_random_string(
@@ -29,7 +33,7 @@ def set_personal_public_key():
     app_user_keys = 'ansible_vars/public_keys/app_user_keys'
     root_user_keys = 'ansible_vars/public_keys/root_user_keys'
 
-    with open(expanduser('~/.ssh/id_rsa.pub'), 'r') as f:
+    with open(os.path.expanduser('~/.ssh/id_rsa.pub'), 'r') as f:
         publick_key = f.read()
 
     with open(app_user_keys, 'w') as f:
@@ -37,6 +41,20 @@ def set_personal_public_key():
 
     with open(root_user_keys, 'w') as f:
         f.write(publick_key)
+
+
+def remove_celery(project_location):
+    # Remove celery upstart job if celery not needed
+    celery_role_location = os.path.join(
+        project_location,
+        'roles/celery'
+    )
+
+    shutil.rmtree(celery_role_location)
+
+
+if '{{ cookiecutter.add_celery_support }}'.lower() != 'y':
+    remove_celery(PROJECT_DIRECTORY)
 
 if '{{ cookiecutter.add_your_pulic_key }}'.lower() == 'y':
     set_personal_public_key()
