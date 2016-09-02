@@ -14,6 +14,7 @@ def context():
         "application_slug": "store",
         "application_user": "hack",
         "application_root": "/hack/store",
+        "add_your_pulic_key": "n"
     }
 
 
@@ -78,7 +79,10 @@ def test_postgres_password_hook(cookies, context):
     check_password_replaced(paths)
 
 
+@pytest.mark.skipif('TRAVIS' in os.environ,
+                    reason="Travis does not have public key")
 def test_public_key_placement(cookies, context):
+    context['add_your_pulic_key'] = 'y'
     result = cookies.bake(extra_context=context)
 
     assert result.exit_code == 0
@@ -87,6 +91,8 @@ def test_public_key_placement(cookies, context):
     assert os.path.getsize(str(result.project) + '/ansible_vars/public_keys/root_user_keys') > 0
 
 
+@pytest.mark.skipif('TRAVIS' in os.environ,
+                    reason="Travis does not have public key")
 def test_public_key_placement_disabled(cookies, context):
     context['add_your_pulic_key'] = 'n'
     result = cookies.bake(extra_context=context)
