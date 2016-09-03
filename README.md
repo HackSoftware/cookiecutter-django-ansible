@@ -14,6 +14,7 @@ Features
     - Sets up env files
     - Sets up aiblity to separate db server from application server. For easier scaling.
     - Sets up staging and production server. For easier development cycle.
+    - Sets up celery with rabbitmq-server
 - Works for
     - Ubuntu 14.04
 
