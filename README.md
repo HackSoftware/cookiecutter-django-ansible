@@ -12,9 +12,10 @@ Features
     - Sets up a NGINX server
     - Sets up a upstart job
     - Sets up env files
-    - Sets up aiblity to separate db server from application server. For easier scaling.
+    - Sets up ability to separate db server from application server. For easier scaling.
     - Sets up staging and production server. For easier development cycle.
     - Sets up celery with rabbitmq-server
+    - Sets up a letsencrypt configuration (Comming soon!)
 - Works for
     - Ubuntu 14.04
 
