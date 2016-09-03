@@ -7,3 +7,7 @@ DJANGO_ALLOWED_HOSTS=".{{ server_domain }}"
 DJANGO_SECURE_SSL_REDIRECT="False"
 DJANGO_ACCOUNT_ALLOW_REGISTRATION="True"
 {% endraw %}
+
+{% if cookiecutter.add_celery_support == "y" %}
+BROKER_URL="" 
+{% endif %}
