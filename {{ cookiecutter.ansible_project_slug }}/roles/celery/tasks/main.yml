@@ -5,7 +5,7 @@
     - rabbitmq-server
 
 - name: Setup the upstart for celery
-  template: src=templates/celery-upstart.j2 dest=/etc/init/celery.conf
+  template: src=templates/celery_upstart.j2 dest=/etc/init/celery.conf
 
 - name: Create application user file in sudoers.d
   file: path='/etc/sudoers.d/{{ application_user }}' owner=root group=root mode=0440 state=touch
