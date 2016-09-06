@@ -21,3 +21,7 @@ postgresql_user_privileges:
   - name: '{{ application_name }}'
     db: '{{ application_name }}'
 {% endraw %}
+
+letsencrypt_email: '{{ cookiecutter.letsencrypt_email }}'
+letsencrypt_pause_services: 'nginx'
+letsencrypt_request_www: 'false'

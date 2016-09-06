@@ -1,3 +1,6 @@
-server_domain: {{ cookiecutter.production_server_domain }}
+server_domain: '{{ cookiecutter.production_server_domain }}'
+{% raw %}
 gunicorn_workers: 3
 application_vars_file: application_vars/production_env.j2
+letsencrypt_domain: '{{ server_domain }}'
+{% endraw %}

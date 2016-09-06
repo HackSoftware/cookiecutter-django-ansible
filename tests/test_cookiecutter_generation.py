@@ -14,7 +14,8 @@ def context():
         "application_slug": "store",
         "application_user": "hack",
         "application_root": "/hack/store",
-        "add_your_pulic_key": "n"
+        "add_your_pulic_key": "n",
+        "add_letsencrypt_certificate": "y",
     }
 
 
@@ -117,3 +118,19 @@ def test_removed_celery_role(cookies, context):
 
     assert result.exit_code == 0
     assert not os.path.isdir(str(result.project) + '/roles/celery')
+
+
+def test_remove_http_config(cookies, context):
+    context['add_letsencrypt_certificate'] = 'y'
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+    assert not os.path.isfile(str(result.project) + '/roles/application/templates/nginx_http_config.j2')
+
+
+def test_remove_https_config(cookies, context):
+    context['add_letsencrypt_certificate'] = 'n'
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+    assert not os.path.isfile(str(result.project) + '/roles/application/templates/nginx_https_config.j2')
