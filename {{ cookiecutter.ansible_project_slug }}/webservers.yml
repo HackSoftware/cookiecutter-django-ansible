@@ -15,7 +15,9 @@
     - base
     - application
 {% endraw %}
-
 {% if cookiecutter.add_celery_support == "y" %}
     - celery
+{% endif %}
+{% if cookiecutter.add_letsencrypt_certificate == "y" %}
+    - jaywink.letsencrypt
 {% endif %}
