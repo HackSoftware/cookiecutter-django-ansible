@@ -42,11 +42,19 @@
 - name: Setup the upstart for application
   template: src=templates/application_upstart.j2 dest=/etc/init/{{ application_name }}.conf
 
+{% if cookiecutter.add_letsencrypt_certificate == "y" %}
+- name: Create the Nginx secure configuration file
+  template: src=templates/nginx_config.j2
+            dest=/etc/nginx/sites-available/{{ application_name }}
+            backup=yes
+  notify: reload nginx
+{% else %}
 - name: Create the Nginx configuration file
   template: src=templates/nginx_config.j2
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
   notify: reload nginx
+{% endif %}
 
 - name: Ensure that the application site is enabled
   file: src=/etc/nginx/sites-available/{{ application_name }}

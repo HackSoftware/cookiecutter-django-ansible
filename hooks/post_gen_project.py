@@ -13,6 +13,25 @@ def get_random_string(
     return ''.join(random.choice(allowed_chars) for i in range(length))
 
 
+def remove_not_needed_nginx_config_file(project_location):
+    if '{{ cookiecutter.add_letsencrypt_certificate }}'.lower() == 'y':
+        # Remove celery upstart job if celery not needed
+        http_file_location = os.path.join(
+            project_location,
+            'roles/application/templates/nginx_http_config.j2'
+        )
+
+        os.remove(http_file_location)
+
+    else:
+        https_file_location = os.path.join(
+            project_location,
+            'roles/application/templates/nginx_https_config.j2'
+        )
+
+        os.remove(https_file_location)
+
+
 def postgres_set_password():
     settings_content = ''
     settings_file_name = 'ansible_vars/base.yml'
@@ -60,3 +79,4 @@ if '{{ cookiecutter.add_your_pulic_key }}'.lower() == 'y':
     set_personal_public_key()
 
 postgres_set_password()
+remove_not_needed_nginx_config_file(PROJECT_DIRECTORY)
