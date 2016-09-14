@@ -1,4 +1,4 @@
-{% raw %}
+{% raw -%}
 ---
 - name: Provision web server
   hosts: webservers
@@ -14,10 +14,10 @@
     - nginx
     - base
     - application
-{% endraw %}
-{% if cookiecutter.add_celery_support == "y" %}
+{%- endraw %}
+{%- if cookiecutter.add_celery_support == "y" %}
     - celery
-{% endif %}
-{% if cookiecutter.add_letsencrypt_certificate == "y" %}
+{%- endif %}
+{%- if cookiecutter.add_letsencrypt_certificate == "y" %}
     - jaywink.letsencrypt
-{% endif %}
+{%- endif %}

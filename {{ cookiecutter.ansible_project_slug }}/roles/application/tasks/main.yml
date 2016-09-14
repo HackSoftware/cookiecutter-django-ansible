@@ -1,4 +1,4 @@
-{% raw %}
+{% raw -%}
 ---
 - name: Add application user
   user: name={{ application_user }}
@@ -41,30 +41,30 @@
 
 - name: Setup the upstart for application
   template: src=templates/application_upstart.j2 dest=/etc/init/{{ application_name }}.conf
-{% endraw %}
+{%- endraw %}
 
-{% if cookiecutter.add_letsencrypt_certificate == "y" %}
-{% raw %}
+{% if cookiecutter.add_letsencrypt_certificate == "y" -%}
+{% raw -%}
 - name: Create the Nginx secure configuration file
   template: src=templates/nginx_https_config.j2
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
   notify: reload nginx
-{% endraw %}
+{%- endraw %}
 
-{% else %}
+{%- else -%}
 
-{% raw %}
+{% raw -%}
 - name: Create the Nginx configuration file
   template: src=templates/nginx_http_config.j2
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
   notify: reload nginx
-{% endraw %}
+{%- endraw %}
 
-{% endif %}
+{%- endif %}
 
-{% raw %}
+{% raw -%}
 - name: Ensure that the application site is enabled
   file: src=/etc/nginx/sites-available/{{ application_name }}
         dest=/etc/nginx/sites-enabled/{{ application_name }}
@@ -76,4 +76,4 @@
 
 - name: Give application user permission to restart the application
   lineinfile: "dest='/etc/sudoers.d/{{ application_user }}' line='{{ application_user }} ALL = (root) NOPASSWD: /sbin/start {{ application_name }}, /sbin/stop {{ application_name }}, /sbin/restart {{ application_name }}'"
-{% endraw %}
+{%- endraw %}
