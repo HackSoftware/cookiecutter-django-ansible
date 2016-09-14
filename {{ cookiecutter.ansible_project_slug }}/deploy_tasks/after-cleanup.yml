@@ -15,7 +15,7 @@
   service: name={{ application_name }} state=restarted
 {% endraw %}
 
-{% if cookiecuter.add_celery_support == "y" %}
+{% if cookiecutter.add_celery_support == "y" %}
 - name: Restart Celery
   service: name=celery state=restarted
 {% endif %}
