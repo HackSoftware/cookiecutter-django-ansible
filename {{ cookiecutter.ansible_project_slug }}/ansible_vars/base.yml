@@ -25,3 +25,15 @@ postgresql_user_privileges:
 letsencrypt_email: '{{ cookiecutter.letsencrypt_email }}'
 letsencrypt_pause_services: 'nginx'
 letsencrypt_request_www: 'false'
+
+# Ansistrano deploy settings
+ansistrano_git_repo: '{{ cookiecutter.project_git_remote }}' # Location of the git repository
+{% raw %}
+ansistrano_deploy_via: "git"
+ansistrano_keep_releases: 5
+ansistrano_deploy_to: '{{ application_root }}'
+ansistrano_git_identity_key_path: '~/.ssh/id_rsa'
+ansistrano_shared_paths: ['media', 'staticfiles']
+ansistrano_shared_files: []
+ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/deploy_tasks/after-cleanup.yml"
+{% endraw %}

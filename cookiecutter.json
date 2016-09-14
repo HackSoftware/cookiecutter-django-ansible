@@ -10,5 +10,6 @@
     "add_your_pulic_key": "y",
     "add_celery_support": "n",
     "add_letsencrypt_certificate": "y",
-    "letsencrypt_email": "support@production_server_domain"
+    "letsencrypt_email": "support@production_server_domain",
+    "project_git_remote": "git@github.com:HackSoftware/cookiecutter-django-ansible.git"
 }

@@ -1,0 +1,13 @@
+---
+- name: Deploy application
+  hosts: webservers
+  become: yes
+  become_user: root
+  remote_user: root
+
+  vars_files:
+    - ansible_vars/base.yml
+    - ansible_vars/{{ env }}.yml
+
+  roles:
+    - carlosbuenosvinos.ansistrano-deploy

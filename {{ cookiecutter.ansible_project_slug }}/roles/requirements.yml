@@ -2,3 +2,5 @@
 {% if cookiecutter.add_letsencrypt_certificate %}
 - src: jaywink.letsencrypt
 {% endif %}
+- src: carlosbuenosvinos.ansistrano-deploy
+- src: carlosbuenosvinos.ansistrano-rollback
