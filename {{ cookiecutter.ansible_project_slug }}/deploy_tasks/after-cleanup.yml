@@ -1,4 +1,4 @@
-{% raw %}
+{% raw -%}
 - name: Install dependencies in virtualenv
   pip: virtualenv="{{ ansistrano_shared_path.stdout }}/virtualenv" 
        requirements={{ ansistrano_release_path.stdout }}/requirements/production.txt
@@ -13,9 +13,9 @@
 
 - name: Restart Application
   service: name={{ application_name }} state=restarted
-{% endraw %}
+{%- endraw %}
 
-{% if cookiecutter.add_celery_support == "y" %}
+{% if cookiecutter.add_celery_support == "y" -%}
 - name: Restart Celery
   service: name=celery state=restarted
-{% endif %}
+{%- endif %}

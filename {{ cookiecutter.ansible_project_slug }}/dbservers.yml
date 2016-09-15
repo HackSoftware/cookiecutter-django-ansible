@@ -1,4 +1,4 @@
-{% raw %}
+{% raw -%}
 ---
 - name: Provision db server
   hosts: dbservers
@@ -13,4 +13,4 @@
   roles:
     - ANXS.postgresql
     - base
-{% endraw %}
+{%- endraw %}

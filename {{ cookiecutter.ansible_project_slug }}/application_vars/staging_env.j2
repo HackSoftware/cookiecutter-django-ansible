@@ -1,4 +1,4 @@
-{% raw %}
+{% raw -%}
 DATABASE_URL="postgres://{{ application_name }}:{{ postgresql_app_user_password }}@localhost:5432/{{ application_name }}"
 DJANGO_ADMIN_URL="^admin/$"
 DJANGO_SETTINGS_MODULE="config.settings.production"
@@ -6,8 +6,8 @@ DJANGO_SECRET_KEY="jvlza+6=g+&!2fq_wagy873=&nrsc2@d2v3q7q%kh@)zjldyq8"
 DJANGO_ALLOWED_HOSTS=".{{ server_domain }}"
 DJANGO_SECURE_SSL_REDIRECT="False"
 DJANGO_ACCOUNT_ALLOW_REGISTRATION="True"
-{% endraw %}
+{%- endraw %}
 
-{% if cookiecutter.add_celery_support == "y" %}
+{% if cookiecutter.add_celery_support == "y" -%}
 BROKER_URL="" 
-{% endif %}
+{%- endif %}
