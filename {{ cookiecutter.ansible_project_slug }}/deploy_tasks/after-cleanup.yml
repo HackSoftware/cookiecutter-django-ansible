@@ -7,15 +7,15 @@
 - name: Collect statics
   shell: "{{ ansistrano_shared_path.stdout }}/virtualenv/bin/python {{ ansistrano_release_path.stdout }}/manage.py collectstatic --noinput"
 
-
 - name: Run Migrations
   shell: "{{ ansistrano_shared_path.stdout }}/virtualenv/bin/python {{ ansistrano_release_path.stdout }}/manage.py migrate --noinput"
 
 - name: Restart Application
-  service: name={{ application_name }} state=restarted
+  raw: sudo restart {{ application_name }} || sudo start {{ application_name }}
+
 {%- endraw %}
 
 {% if cookiecutter.add_celery_support == "y" -%}
 - name: Restart Celery
-  service: name=celery state=restarted
+  raw: sudo restart celery || sudo start celery
 {%- endif %}
