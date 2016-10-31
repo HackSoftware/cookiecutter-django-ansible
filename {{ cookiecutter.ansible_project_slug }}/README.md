@@ -24,7 +24,7 @@ Ansible can provision a fully working server in 20 minutes. That would have take
 ## How to run the ansible code?
 First of all you need to have latest ansible installed.
 
-Check ansible's documentation: http://docs.ansible.com/ansible/intro_installation.html#
+Check ansible's documentation: http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu
 
 Then you have to install all ansible roles. ``ansible-galaxy`` is the package manager here.
 
