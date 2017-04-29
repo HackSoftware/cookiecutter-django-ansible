@@ -19,5 +19,5 @@
     - celery
 {%- endif %}
 {%- if cookiecutter.add_letsencrypt_certificate == "y" %}
-    - jaywink.letsencrypt
+    - thefinn93.letsencrypt 
 {%- endif %}

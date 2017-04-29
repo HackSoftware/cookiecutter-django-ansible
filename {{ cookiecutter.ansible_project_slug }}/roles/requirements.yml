@@ -1,6 +1,6 @@
 - src: ANXS.postgresql
 {% if cookiecutter.add_letsencrypt_certificate -%}
-- src: jaywink.letsencrypt
+- src: thefinn93.letsencrypt 
 {%- endif %}
 - src: carlosbuenosvinos.ansistrano-deploy
 - src: carlosbuenosvinos.ansistrano-rollback
