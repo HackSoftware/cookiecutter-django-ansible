@@ -2,5 +2,6 @@ server_domain: '{{ cookiecutter.staging_server_domain }}'
 {% raw %}
 gunicorn_workers: 3
 application_vars_file: application_vars/staging_env.j2
-letsencrypt_domain: '{{ server_domain }}'
+letsencrypt_cert_domains:
+  - '{{ server_domain }}'
 {% endraw %}

@@ -41,5 +41,9 @@ server {
     autoindex off;
     alias {{ application_root }}/shared/media/;
   }
+
+  location ~ /.well-known {
+    allow all;
+  }
 }
 {% endraw %}

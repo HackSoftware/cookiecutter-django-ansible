@@ -22,9 +22,9 @@ postgresql_user_privileges:
     db: '{{ application_name }}'
 {% endraw %}
 
+letsencrypt_webroot_path: '/var/www/html'
 letsencrypt_email: '{{ cookiecutter.letsencrypt_email }}'
-letsencrypt_pause_services: 'nginx'
-letsencrypt_request_www: 'false'
+letsencrypt_renewal_command_args: '--renew-hook "systemctl restart nginx"'
 
 # Ansistrano deploy settings
 ansistrano_git_repo: '{{ cookiecutter.project_git_remote }}' # Location of the git repository
