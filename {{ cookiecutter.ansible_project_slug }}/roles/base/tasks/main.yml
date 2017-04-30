@@ -18,4 +18,5 @@
 
 - name: Set ssh keys to root user
   authorized_key: user=root key={{ lookup('file', 'ansible_vars/public_keys/root_user_keys') }} state=present exclusive=yes
+  tags: environment
 {% endraw %}
