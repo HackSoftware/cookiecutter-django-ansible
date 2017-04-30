@@ -1,14 +1,14 @@
 {% raw -%}
 - name: Install dependencies in virtualenv
-  pip: virtualenv="{{ ansistrano_shared_path.stdout }}/virtualenv" 
+  pip: virtualenv="{{ ansistrano_shared_path}}/virtualenv" 
        requirements={{ ansistrano_release_path.stdout }}/requirements/production.txt
        virtualenv_python=python3.4
 
 - name: Collect statics
-  shell: "{{ ansistrano_shared_path.stdout }}/virtualenv/bin/python {{ ansistrano_release_path.stdout }}/manage.py collectstatic --noinput"
+  shell: "{{ ansistrano_shared_path }}/virtualenv/bin/python {{ ansistrano_release_path.stdout }}/manage.py collectstatic --noinput"
 
 - name: Run Migrations
-  shell: "{{ ansistrano_shared_path.stdout }}/virtualenv/bin/python {{ ansistrano_release_path.stdout }}/manage.py migrate --noinput"
+  shell: "{{ ansistrano_shared_path }}/virtualenv/bin/python {{ ansistrano_release_path.stdout }}/manage.py migrate --noinput"
 
 - name: Restart Application
   raw: sudo restart {{ application_name }} || sudo start {{ application_name }}
