@@ -4,6 +4,8 @@
 
 Our machines are provisioned and maintained **ONLY with ansible roles**. So if you want to make any changes to the machines **DONT DO IT VIA SSH**. Make changes in this repo and run the ansible code to change the server state. 
 
+Ansible is really handy for deployment too. Thanks to the guys from [ansistrano](https://github.com/ansistrano/deploy) we can deploy our project in a nice and smooth way.
+
 **What this ansible code do?**
 
 - It installs python.
@@ -11,6 +13,7 @@ Our machines are provisioned and maintained **ONLY with ansible roles**. So if y
 - It installs the postgresql server and configures it.
 - It installs the nginx server and configures the vhost.
 - It configures everyting that django needs: directory structure, upstart jobs, env vars, etc.
+- It can deploy you project.
 
 ## Why do we use ansible?
 Using ansible, we have dramatically reduced the time it takes us to deliver applications into production, from weeks to days and even hours.
@@ -24,7 +27,11 @@ Ansible can provision a fully working server in 20 minutes. That would have take
 ## How to run the ansible code?
 First of all you need to have latest ansible installed.
 
-Check ansible's documentation: http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu
+Keep in mind that ansible works **only with python2 for now**. So create a python2 virtualenv for it.
+
+```
+$ pip install ansible
+```
 
 Then you have to install all ansible roles. ``ansible-galaxy`` is the package manager here.
 
@@ -52,6 +59,12 @@ Provision the production server
 
 ```
 ansible-playbook -i production site.yml
+```
+
+## How to deploy your project?
+
+```
+ansible-playbook -i staging deploy.yml
 ```
 
 ## Common things that you can change here.
