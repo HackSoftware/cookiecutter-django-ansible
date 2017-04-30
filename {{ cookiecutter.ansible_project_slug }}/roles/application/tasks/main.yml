@@ -15,6 +15,7 @@
 
 - name: Set ssh keys to application user
   authorized_key: user={{ application_user }} key="{{ lookup('file', 'ansible_vars/public_keys/app_user_keys') }}" state=present exclusive=yes
+  tags: sshkeys 
 
 - name: Create application virtualenv
   pip: virtualenv="{{ application_root }}/shared/virtualenv" 
@@ -27,6 +28,7 @@
 - name: Create django env file
   template: src={{ application_vars_file }}
             dest=/etc/environment
+  tags: environment
 
 - name: Install os dependencies for application
   apt: name={{ item }} state=installed

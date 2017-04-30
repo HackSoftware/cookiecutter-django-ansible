@@ -93,3 +93,11 @@ There are two env configuration. One for your production server and one for your
 
 #### See sensible information
 All sensible informatin like passwords for postgres and rabbitmq can be changed from [here.](/ansible_vars/)
+
+## How to run only a certain peace of code
+You can filter tasks based on tags from the command line with --tags or --skip-tags.
+ansible-playbook -i staging sites.yml --tags "sshkeys,packages"
+The existing tags are:
+- sshkey (this will only upload the new ssh public keys from git)
+- environment (this will only update you env vars)
+- packages (this will only install your apt-get packages)
