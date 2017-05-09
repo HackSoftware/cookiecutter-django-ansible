@@ -97,8 +97,11 @@ All sensible informatin like passwords for postgres and rabbitmq can be changed 
 
 ## How to run only a certain peace of code
 You can filter tasks based on tags from the command line with --tags or --skip-tags.
+```bash
 ansible-playbook -i staging sites.yml --tags "sshkeys,packages"
+```
 The existing tags are:
+
 - sshkey (this will only upload the new ssh public keys from git)
 - environment (this will only update you env vars)
 - packages (this will only install your apt-get packages)
