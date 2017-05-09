@@ -1,4 +1,5 @@
 # Ansible documentation.
+[![Cookiecutter Django Ansible Badge](https://img.shields.io/badge/built%20with-Cookiecutter%20Django%20Ansible-green.svg)](https://github.com/HackSoftware/cookiecutter-django-ansible)
 
 ## What is this repository?
 
