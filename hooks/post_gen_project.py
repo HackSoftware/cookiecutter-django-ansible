@@ -7,7 +7,6 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 
 def get_random_string(
-        *,
         length=50,
         allowed_chars='abcdefghijklmnopqrstuvwxyz0123456789!@%^&*(-_=+)'):
     return ''.join(random.choice(allowed_chars) for i in range(length))
