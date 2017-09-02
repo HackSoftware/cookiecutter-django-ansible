@@ -37,7 +37,7 @@ $ pip install ansible
 Then you have to install all ansible roles. ``ansible-galaxy`` is the package manager here.
 
 ```
-$ ansible-galaxy install -r requirements.yml
+$ ansible-galaxy install -r roles/requirements.yml
 ```
 
 ### And now you are ready to run the ansible code
