@@ -7,6 +7,6 @@
 ███████████
 ███████████
 
-This mashine is maintained ONLY BY ANSIBLE RECIPES. If you whant to make any configuration changes you must make them by editting the ansible code!
+This machine is maintained ONLY BY ANSIBLE RECIPES. If you want to make any configuration changes you must make them by editing the ansible code!
 
 Don't make any config changes via ssh!
