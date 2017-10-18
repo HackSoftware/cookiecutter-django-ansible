@@ -13,7 +13,7 @@ respawn limit 3 30
 script
     eval $(cat /etc/environment | sed 's/^/export /')
 
-    cd {{ application_root }}current
-    exec {{ application_root }}shared/virtualenv/bin/celery -A {{ application_name }} worker -B -E --loglevel=info
+    cd {{ application_root }}/current
+    exec {{ application_root }}/shared/virtualenv/bin/celery -A {{ application_name }} worker -B -E --loglevel=info
 end script
 {% endraw %}

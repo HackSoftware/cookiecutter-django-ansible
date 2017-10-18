@@ -19,10 +19,10 @@ script
     WORKERS={{ gunicorn_workers }}
     USER={{ application_user }}
     GROUP={{ application_user }}
-    LOGFILE={{ application_root }}shared/log/gunicorn.log
+    LOGFILE={{ application_root }}/shared/log/gunicorn.log
     
-    cd {{ application_root }}current/
-    exec {{ application_root }}shared/virtualenv/bin/gunicorn \
+    cd {{ application_root }}/current/
+    exec {{ application_root }}/shared/virtualenv/bin/gunicorn \
             -w $WORKERS -t $TIMEOUT \
             --user=$USER --group=$GROUP \
             --name=$NAME \
