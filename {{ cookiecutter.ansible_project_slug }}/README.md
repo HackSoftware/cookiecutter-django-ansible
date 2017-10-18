@@ -21,7 +21,7 @@ Using ansible, we have dramatically reduced the time it takes us to deliver appl
 
 Eliminate Configuration Drift - With ansible, our servers remain in the state we set for them.
 
-Visibility - Ansible gives us rich data sets not only of infrastructure configuration but also of any changes to that infrastructure. We have much more visibility into the changes occurring in our infrastructure over time and their impact to service levels
+Visibility - Ansible gives us rich data sets not only of infrastructure configuration but also of any changes to that infrastructure. We have much more visibility into the changes occurring in our infrastructure over time and their impact to service levels.
 
 Ansible can provision a fully working server in 20 minutes. That would have taken close to a full day of work without ansible!
 
@@ -59,7 +59,7 @@ ansible-playbook -i staging sites.yml
 Provision the production server
 
 ```
-ansible-playbook -i production site.yml
+ansible-playbook -i production sites.yml
 ```
 
 ## How to deploy your project?
@@ -74,7 +74,7 @@ ansible-playbook -i staging deploy.yml
 
 We have two types of machines: webservers and dbservers. That makes scaling easyer but you can use the same machine for both types.
 
-Here are the machines addresses:
+Here are the machine addresses:
 - [Staging machines](/staging)
 - [Production machines](/production)
 
@@ -90,12 +90,12 @@ Maybe you want to give someone access to the server? [Look at this dir.](/ansibl
 
 #### Change some env vars
 
-There are two env configuration. One for your production server and one for your staging server. [The env files are located here.](/application_vars/)
+There are two env configurations. One for your production server and one for your staging server. [The env files are located here.](/application_vars/)
 
 #### See sensible information
-All sensible informatin like passwords for postgres and rabbitmq can be changed from [here.](/ansible_vars/)
+All sensible information like passwords for postgres and rabbitmq can be changed from [here.](/ansible_vars/)
 
-## How to run only a certain peace of code
+## How to run only a certain piece of code
 
 You can filter tasks based on tags from the command line with `--tags` or `--skip-tags`. You can list available tags with `--list-tags`
 
@@ -116,7 +116,7 @@ ansible-playbook -i staging sites.yml --tags "sshkeys"
 ansible-playbook -i staging sites.yml --tags "environment"
 ```
 
-**Update or install new apt packeges:**
+**Update or install new apt packages:**
 
 ```bash
 ansible-playbook -i staging sites.yml --tags "packages"
